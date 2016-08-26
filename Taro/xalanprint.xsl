@@ -3,7 +3,7 @@
 <!--  This stylesheet generates Style 2 which has a Table of Contents in an HTML table cell along the left side of the screen. It may be used when an HTML frame is not desired.  -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:redirect="http://xml.apache.org/xalan/redirect" extension-element-prefixes="redirect">
 	<xsl:strip-space elements="*"/>
-	<!-- <xsl:include href="xmlsize_3.xsl"/> -->
+	<xsl:include href="xmlsize_3.xsl"/>
 	<!-- Creates the body of the finding aid.-->
 	<xsl:template match="/">
 		<xsl:variable name="file">
@@ -80,7 +80,7 @@
 		<xsl:call-template name="archdesc-index"/>
 		<xsl:call-template name="archdesc-odd2"/>
 		<!-- <xsl:call-template name="index-list"/> -->
-		<!-- <xsl:call-template name="endnav"/> -->
+		<xsl:call-template name="endnav"/>
 	</xsl:template>
 	<!-- MR added to create school logo -->
 	<xsl:template name="eadlogo">

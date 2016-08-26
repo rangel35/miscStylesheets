@@ -3,7 +3,7 @@
 	<xsl:output omit-xml-declaration="yes" indent="yes"/>
 	<xsl:strip-space elements="*"/>  
 	
-	<!--<xsl:include href="xmlsize_3.xsl"/>-->
+	<xsl:include href="xmlsize_3.xsl"/>
 	
 	<!-- Creates the body of the finding aid.-->
 	<xsl:template match="/">
@@ -25,7 +25,7 @@
 						<td align="left" valign="top">
 							<br/>
 							<div align="right">
-								<!--<xsl:call-template name="toggle"/>-->
+								<xsl:call-template name="toggle"/>
 							</div>
 						</td>
 					</tr>
@@ -81,7 +81,7 @@
 		<xsl:call-template name="archdesc-index"/>
 		<xsl:call-template name="archdesc-odd2"/>
 		<!-- <xsl:call-template name="index-list"/> -->
-		<!--<xsl:call-template name="endnav"/>-->
+		<xsl:call-template name="endnav"/>
 	</xsl:template>
 	<!-- MR added to create school logo -->
 	<xsl:template name="eadlogo">
