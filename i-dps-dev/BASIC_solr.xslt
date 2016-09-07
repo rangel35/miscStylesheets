@@ -3,9 +3,9 @@
     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:foxml="info:fedora/fedora-system:def/foxml#"
     xmlns:mods="http://www.loc.gov/mods/v3" exclude-result-prefixes="mods">
 
-<!--    <xsl:include href="library/xslt-date-template.xslt"/>
+    <xsl:include href="library/xslt-date-template.xslt"/>
     <xsl:include href="manuscript_finding_aid.xslt"/>
--->    
+    
     <xsl:template match="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]"
         name="index_BASIC">
         <xsl:param name="content"/>
