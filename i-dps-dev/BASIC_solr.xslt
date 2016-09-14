@@ -25,19 +25,7 @@
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, local-name(), '_t')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, local-name(), '_mt')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, local-name(), '_s')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
@@ -52,19 +40,7 @@
         <xsl:for-each select="mods:*/mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*), '_', local-name(), '_t')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, name(parent::*), '_', local-name(), '_mt')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*), '_', local-name(), '_s')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
@@ -79,19 +55,7 @@
         <xsl:for-each select="mods:*/mods:*/mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_t')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_mt')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_s')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
@@ -106,19 +70,7 @@
         <xsl:for-each select="mods:*/mods:*/mods:*/mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*/parent::*/parent::*), name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_t')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, name(parent::*/parent::*/parent::*), name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_mt')"/>
-                </xsl:attribute>
-                <xsl:value-of select="text()"/>
-            </field>
-            <field>
-                <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, name(parent::*/parent::*/parent::*), name(parent::*/parent::*), '_', name(parent::*), '_', local-name(), '_s')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
