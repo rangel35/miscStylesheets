@@ -273,7 +273,7 @@
 		<a name="{@id}"/>
 	</xsl:template>
 	<!-- This template converts a Ref element into an HTML anchor.-->
-    <xsl:template match="ead:ref"> &#32;&#32; <a href="#{@target}">
+	<xsl:template match="*/ead:ref"> &#32;&#32; <a href="#{@target}">
 			<xsl:apply-templates/>
 		</a>
 	</xsl:template>
@@ -297,6 +297,18 @@
 				<xsl:apply-templates/>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+	<!-- This template converts an "bibref" element into an HTML anchor.-->
+	<xsl:template match="*/ead:bibref[@xlink:show='replace']">
+		<a href="{@xlink:href}" target="_self">
+			<xsl:apply-templates/>
+		</a>
+	</xsl:template>
+	
+	<xsl:template match="*/ead:bibref[@xlink:show='new']">
+		<a href="{@xlink:href}" target="_blank">
+			<xsl:apply-templates/>
+		</a>
 	</xsl:template>
 	<!-- This template converts an "extptr" element into an HTML anchor.-->
     <xsl:template match="ead:extptr">
@@ -682,8 +694,9 @@
 				<!--One can change the order of appearance for the children of did by changing the order of the following statements.-->
 			    <xsl:apply-templates select="ead:origination"/>
 				<xsl:apply-templates select="ead:unittitle"/>
-				<xsl:apply-templates select="ead:unitdate"/>
-			    <xsl:apply-templates select="ead:abstract"/>
+				<!--<xsl:apply-templates select="ead:unitdate"/>-->
+			    <xsl:call-template name="ead-unitdate"/>
+				<xsl:apply-templates select="ead:abstract"/>
 				<xsl:apply-templates select="ead:unitid"/>
 			    <xsl:apply-templates select="ead:physdesc"/>
 				<xsl:apply-templates select="ead:physloc"/>
@@ -836,36 +849,50 @@
 		</xsl:if>
 	</xsl:template>
 	<!-- Processes the unit date if it is not a child of unit title but a child of did, the current context.-->
-    <xsl:template match="ead:archdesc/ead:did/ead:unitdate">
+    <xsl:template name="ead-unitdate">
 		<!--The template tests to see if there is a label attribute for a unittitle that is the child of did and not unittitle, inserting the contents if there is or adding one if there isn't.-->
-		<xsl:choose>
-			<xsl:when test="@label">
-				<tr>
-					<td/>
-					<td valign="top">
-						<strong>
-							<xsl:value-of select="@label"/>
-						</strong>
-					</td>
-					<td>
+    	<tr>
+    		<td/>
+			<xsl:for-each select="ead:unitdate[@type='inclusive']">
+    			<xsl:choose>
+    				<xsl:when test="position()=1">
+    					<td valign="top">
+    						<strong>
+								<xsl:text>Dates: </xsl:text>
+							</strong>
+    					</td>
+    				<xsl:text disable-output-escaping="yes">&#60;td valign="top"&#62;</xsl:text>
 						<xsl:apply-templates/>
-					</td>
-				</tr>
-			</xsl:when>
-			<xsl:otherwise>
-				<tr>
-					<td/>
-					<td valign="top">
-						<strong>
-							<xsl:text>Dates: </xsl:text>
-						</strong>
-					</td>
-					<td>
+					</xsl:when>
+    				<xsl:otherwise>
+    					<xsl:apply-templates/>
+    				</xsl:otherwise>
+    			</xsl:choose>
+    		</xsl:for-each>
+    		<xsl:text disable-output-escaping="yes">&#60;/td&#62;</xsl:text>
+    	</tr>
+    <tr>
+			<td/>
+			<xsl:for-each select="ead:unitdate[@type='bulk']">
+				<xsl:choose>
+					<xsl:when test="position()=1">
+						<td valign="top">
+							<strong>
+								<xsl:text>Dates (Bulk): </xsl:text>
+							</strong>
+						</td>
+						<xsl:text disable-output-escaping="yes">&#60;td valign="top"&#62;</xsl:text>
 						<xsl:apply-templates/>
-					</td>
-				</tr>
-			</xsl:otherwise>
-		</xsl:choose>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:apply-templates/>
+					</xsl:otherwise>
+				</xsl:choose>
+				
+			</xsl:for-each>
+			<xsl:text disable-output-escaping="yes">&#60;/td&#62;</xsl:text>
+		</tr>
+		
 	</xsl:template>
 	<!--This template processes the note element.-->
     <xsl:template match="ead:archdesc/ead:did/ead:note">
@@ -1539,7 +1566,7 @@
 	<!-- This template rule formats the top-level odd element.-->
 	<!-- MR changes for adding tables to odd tag -->
 	<xsl:template name="archdesc-odd">
-		<xsl:if test="ead:ead/ead:archdesc/odd[string-length(text()|*)!=0]">
+		<xsl:if test="ead:ead/ead:archdesc/ead:odd[string-length(text()|*)!=0]">
 		    <xsl:for-each select="ead:ead/ead:archdesc/ead:odd">
 				<xsl:choose>
 					<xsl:when test="@type='index'"/>
@@ -1607,7 +1634,7 @@
 		</xsl:if>
 	</xsl:template>
 	<xsl:template name="archdesc-odd2">
-		<xsl:if test="ead:ead/ead:archdesc/odd[string-length(text()|*)!=0]">
+		<xsl:if test="ead:ead/ead:archdesc/ead:odd[string-length(text()|*)!=0]">
 		    <xsl:for-each select="ead:ead/ead:archdesc/ead:odd">
 				<xsl:if test="@type='index'">
 					<h3>
@@ -2038,6 +2065,12 @@
 				</tr>
 				<tr>
 					<td colspan="14">
+						<xsl:if test="@id">
+							<a>
+								<xsl:attribute name="name"><xsl:apply-templates select="@id"/></xsl:attribute>
+								<xsl:text>&#32;</xsl:text>
+							</a>
+						</xsl:if>
 						<a>
 							<xsl:attribute name="name">series<xsl:number/></xsl:attribute>
 							<xsl:text>&#32;</xsl:text>
@@ -4921,7 +4954,17 @@
 	<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 	<!--Displays unittitle and date information for a component level did.-->
 	<xsl:template name="component-did">
-			<xsl:for-each select="ead:unitid/@audience[not(self::internal)]">
+		<xsl:if test="../@level = 'subseries'">
+			<xsl:if test="../@id">
+				<a>
+					<xsl:attribute name="name">
+						<xsl:value-of select="../@id"/>
+					</xsl:attribute>
+					<xsl:text>&#32;</xsl:text>
+				</a>
+			</xsl:if>
+		</xsl:if>
+		<xsl:for-each select="ead:unitid/@audience[not(self::internal)]">
 				<xsl:if test="@label">
 					<strong>
 						<xsl:value-of select="@label"/>
