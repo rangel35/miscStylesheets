@@ -22,6 +22,56 @@
 
         <xsl:param name="prefix">mods_</xsl:param>
         
+        <!-- Title -->
+        <xsl:for-each select="(mods:titleInfo/mods:title[normalize-space(text())])">
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_t')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_s')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+        </xsl:for-each>
+        
+        <!-- Sub-title -->
+        <xsl:for-each select="mods:titleInfo/mods:subTitle[normalize-space(text())]">
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_t')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_s')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+        </xsl:for-each>
+
+        <!-- Date Created -->
+        <xsl:for-each select="mods:originInfo/mods:dateCreated[normalize-space(text())]">
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_t')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <xsl:if test="position() = 1"><!-- use the first for a sortable field -->
+                <field>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="concat($prefix, local-name(), '_s')"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="text()"/>
+                </field>
+            </xsl:if>
+        </xsl:for-each>
+        
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
