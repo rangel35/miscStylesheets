@@ -595,8 +595,15 @@
 		</strong>
 	</xsl:template>
 	<!--This template rule formats an extent element under a physdesc.-->
-	<xsl:template match="ead:extent">
-		<xsl:apply-templates/>
+	<xsl:template match="*/ead:extent">
+		<xsl:choose>
+			<xsl:when test="parent::ead:physdesc">
+				<xsl:value-of select="."/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<!--This template rule formats an expan element.-->
     <xsl:template match="ead:expan">
@@ -777,10 +784,12 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-    <xsl:template match="ead:address">
-	    <xsl:for-each select="ead:addressline">
+	<xsl:template match="*/ead:address">
+		<br />
+		<xsl:for-each select="ead:addressline">
+			<xsl:value-of select="text()"/>
+			<xsl:text>&#44;</xsl:text>
 			<xsl:text>&#32;</xsl:text>
-			<xsl:apply-templates/>
 		</xsl:for-each>
 	</xsl:template>
 	<!-- The following two templates test for and processes various permutations of unittitle and unitdate.-->
