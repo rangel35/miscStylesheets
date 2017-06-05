@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:foxml="info:fedora/fedora-system:def/foxml#"
   xmlns:mods="http://www.loc.gov/mods/v3" exclude-result-prefixes="mods">
 
@@ -912,8 +912,108 @@
       </field>
     </xsl:for-each>
     
+    
+    <!-- 
+    
+    Advanced Search Facets begin here
+    Changes made by Nate
+    02-08-2017
+    
+     --> 
+     
+    <!-- Title -->
+    <xsl:for-each select="mods:titleInfo/mods:title[normalize-space(text())]">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of select="concat($prefix, 'titleInfo_', local-name(), $suffix)"/>
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+    
+    <!-- Creator or Contributor-->
+    <xsl:for-each select="(mods:name/mods:namePart[normalize-space(text())])">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, local-name(), '_displayLabel_', translate(../@displayLabel, ' ', '_'), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+ 
+    <!-- Subject Name -->
+    <xsl:for-each select="(mods:subject/mods:name/mods:namePart[normalize-space(text())])">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'subject_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+    
+    <!-- Subject Topic -->
+    <xsl:for-each select="(mods:subject/mods:topic[normalize-space(text())])">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'subject_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+    
+    <!-- Subject Genre -->
+    <xsl:for-each select="(mods:subject/mods:genre[normalize-space(text())])">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'subject_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+    
+    <!-- dateIssued and dateCreated -->
+    <xsl:for-each select="mods:originInfo/*[self::mods:dateIssued or self::mods:dateCreated][normalize-space(text())]">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'originInfo_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+
+    <!-- dateIssued -->
+    <xsl:for-each select="mods:originInfo/mods:dateIssued[normalize-space(text())]">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'originInfo_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
+    
+    <!-- dateCreated -->
+    <xsl:for-each select="mods:originInfo/mods:dateCreated[normalize-space(text())]">
+      <field>
+        <xsl:attribute name="name">
+          <xsl:value-of
+            select="concat($prefix, 'originInfo_', local-name(), $suffix)"
+          />
+        </xsl:attribute>
+        <xsl:value-of select="text()"/>
+      </field>
+    </xsl:for-each>
 
   </xsl:template>
-
-
 </xsl:stylesheet>
