@@ -2574,7 +2574,7 @@
 								</td>
 							</tr>
 						</xsl:for-each>
-						<xsl:for-each select="ead:p">
+						<xsl:for-each select="ead:note/ead:p">
 							<tr>
 								<td/>
 								<td/>

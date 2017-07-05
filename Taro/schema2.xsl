@@ -795,9 +795,9 @@
 		</xsl:if>
 		<xsl:apply-templates/>
 	</xsl:template>
-	
+
 	<xsl:template match="*/ead:address">
-		<br />
+		<br/>
 		<xsl:for-each select="ead:addressline">
 			<xsl:value-of select="text()"/>
 			<xsl:text>&#44;</xsl:text>
@@ -2361,8 +2361,9 @@
 						</xsl:for-each>
 					</xsl:for-each>
 				</xsl:for-each>
-				<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
-						<xsl:for-each select="ead:head">
+				<xsl:for-each
+					select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+					<xsl:for-each select="ead:head">
 						<tr>
 							<td/>
 							<td colspan="13" valign="top">
@@ -2394,10 +2395,10 @@
 							<td colspan="13" valign="top">
 								<xsl:apply-templates select="."/>
 							</td>
-						</tr>            
-					</xsl:for-each>					
+						</tr>
+					</xsl:for-each>
 				</xsl:for-each>
-				
+
 				<!-- Proceses each c02.-->
 				<xsl:for-each select="ead:c02">
 					<xsl:for-each select="ead:did">
@@ -2625,7 +2626,8 @@
 							</tr>
 						</xsl:for-each>
 					</xsl:for-each>
-					<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+					<xsl:for-each
+						select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 						<xsl:for-each select="ead:head">
 							<tr>
 								<td/>
@@ -2638,7 +2640,7 @@
 								</td>
 							</tr>
 						</xsl:for-each>
-						<xsl:for-each select="ead:p">
+						<xsl:for-each select="ead:note/ead:p">
 							<tr>
 								<td/>
 								<td/>
@@ -2666,11 +2668,11 @@
 								<td colspan="11" valign="top">
 									<xsl:apply-templates select="."/>
 								</td>
-							</tr>            
+							</tr>
 						</xsl:for-each>
-						
+
 					</xsl:for-each>
-					
+
 					<!-- Processes each c03.-->
 					<xsl:for-each select="ead:c03">
 						<xsl:for-each select="ead:did">
@@ -2877,7 +2879,8 @@
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:for-each>
-						<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+						<xsl:for-each
+							select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 							<xsl:for-each select="ead:head">
 								<tr>
 									<td/>
@@ -2922,9 +2925,9 @@
 									<td colspan="10" valign="top">
 										<xsl:apply-templates select="."/>
 									</td>
-								</tr>            
+								</tr>
 							</xsl:for-each>
-							
+
 						</xsl:for-each>
 
 						<!-- Processes each c04.-->
@@ -3188,7 +3191,8 @@
 									</tr>
 								</xsl:for-each>
 							</xsl:for-each>
-							<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+							<xsl:for-each
+								select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 								<xsl:for-each select="ead:head">
 									<tr>
 										<td/>
@@ -3237,11 +3241,11 @@
 										<td colspan="9" valign="top">
 											<xsl:apply-templates select="."/>
 										</td>
-									</tr>            
+									</tr>
 								</xsl:for-each>
-								
+
 							</xsl:for-each>
-							
+
 							<!-- Processes each c05-->
 							<xsl:for-each select="ead:c05">
 								<xsl:for-each select="ead:did">
@@ -3520,7 +3524,8 @@
 										</tr>
 									</xsl:for-each>
 								</xsl:for-each>
-								<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+								<xsl:for-each
+									select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 									<xsl:for-each select="ead:head">
 										<tr>
 											<td/>
@@ -3573,11 +3578,11 @@
 											<td colspan="8" valign="top">
 												<xsl:apply-templates select="."/>
 											</td>
-										</tr>            
+										</tr>
 									</xsl:for-each>
-									
+
 								</xsl:for-each>
-								
+
 								<!-- Processes each c06-->
 								<xsl:for-each select="ead:c06">
 									<xsl:for-each select="ead:did">
@@ -3872,7 +3877,8 @@
 											</tr>
 										</xsl:for-each>
 									</xsl:for-each>
-									<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+									<xsl:for-each
+										select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 										<xsl:for-each select="ead:head">
 											<tr>
 												<td/>
@@ -3929,11 +3935,11 @@
 												<td colspan="7" valign="top">
 													<xsl:apply-templates select="."/>
 												</td>
-											</tr>            
+											</tr>
 										</xsl:for-each>
-										
+
 									</xsl:for-each>
-									
+
 									<!-- Processes each c07.-->
 									<xsl:for-each select="ead:c07">
 										<xsl:for-each select="ead:did">
@@ -4246,7 +4252,8 @@
 												</tr>
 											</xsl:for-each>
 										</xsl:for-each>
-										<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+										<xsl:for-each
+											select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 											<xsl:for-each select="ead:head">
 												<tr>
 													<td/>
@@ -4307,11 +4314,11 @@
 													<td colspan="6" valign="top">
 														<xsl:apply-templates select="."/>
 													</td>
-												</tr>            
+												</tr>
 											</xsl:for-each>
-											
+
 										</xsl:for-each>
-										
+
 										<!-- Processes each c08.-->
 										<xsl:for-each select="ead:c08">
 											<xsl:for-each select="ead:did">
@@ -4588,7 +4595,8 @@
 													</xsl:for-each>
 												</xsl:for-each>
 											</xsl:for-each>
-											<xsl:for-each select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
+											<xsl:for-each
+												select="ead:note | ead:accessrestrict | ead:userestrict | ead:phystech | ead:prefercite | ead:appraisal | ead:acqinfo | ead:originalsloc | ead:processinfo | ead:odd | ead:altformavail | ead:otherfindaid">
 												<xsl:for-each select="ead:head">
 													<tr>
 														<td/>
@@ -4602,7 +4610,7 @@
 														<td/>
 														<td colspan="5" valign="top">
 															<strong>
-																<xsl:apply-templates select="."/>
+															<xsl:apply-templates select="."/>
 															</strong>
 														</td>
 													</tr>
@@ -4653,9 +4661,9 @@
 														<td colspan="5" valign="top">
 															<xsl:apply-templates select="."/>
 														</td>
-													</tr>            
+													</tr>
 												</xsl:for-each>
-												
+
 											</xsl:for-each>
 										</xsl:for-each>
 									</xsl:for-each>
@@ -5455,5 +5463,17 @@
 			<xsl:apply-templates/>
 			<xsl:text> </xsl:text>
 		</xsl:for-each>
+		<xsl:if test="ead:physloc">
+			<xsl:for-each select="ead:physloc">
+				<xsl:if test="@label">
+					<strong>
+						<xsl:value-of select="@label"/>
+					</strong>
+					<xsl:text>  </xsl:text>
+				</xsl:if>
+				<xsl:apply-templates/>
+			</xsl:for-each>
+			<br/>
+		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>
