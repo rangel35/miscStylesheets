@@ -984,7 +984,7 @@
       <field>
         <xsl:attribute name="name">
           <xsl:value-of
-            select="concat($prefix, 'originInfo_', datesCombined, $suffix)"
+            select="concat($prefix, 'originInfo_datesCombined', $suffix)"
           />
         </xsl:attribute>
         <xsl:value-of select="text()"/>

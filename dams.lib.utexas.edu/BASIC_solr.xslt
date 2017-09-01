@@ -58,20 +58,21 @@
         <xsl:for-each select="mods:originInfo/mods:dateCreated[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
-                    <xsl:value-of select="concat($prefix, local-name(), '_t')"/>
+                    <xsl:value-of select="concat($prefix, local-name(), '_mt')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
             <xsl:if test="position() = 1"><!-- use the first for a sortable field -->
                 <field>
                     <xsl:attribute name="name">
-                        <xsl:value-of select="concat($prefix, local-name(), '_s')"/>
+                        <xsl:value-of select="concat($prefix, local-name(), '_ms')"/>
                     </xsl:attribute>
                     <xsl:value-of select="text()"/>
                 </field>
             </xsl:if>
         </xsl:for-each>
         
+        <!-- generic nesting to capture all fields -->
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
