@@ -2121,7 +2121,7 @@
 			<xsl:value-of select="ead:ead/ead:eadheader/ead:eadid"/>
 		</xsl:variable>
 		<xsl:if
-			test="ead:ead/ead:archdesc/ead:bioghist[string-length(text()|*)!=0] | ead:ead/ead:archdesc/ead:descgrp/ead:bioghist[string-length(text()|*)!=0]">
+			test="ead:ead/ead:archdesc/ead:bioghist[string-length(text()|*)!=0] | ead:ead/ead:archdesc/ead:descgrp/ead:bioghist[string-length(text()|*)!=0]">			
 			<xsl:for-each
 				select="ead:ead/ead:archdesc/ead:bioghist | ead:ead/ead:archdesc/ead:descgrp/ead:bioghist">
 				<xsl:apply-templates/>
@@ -2136,7 +2136,7 @@
 		match="ead:ead/ead:archdesc/ead:bioghist/ead:head | ead:ead/ead:archdesc/ead:descgrp/ead:bioghist/ead:head">
 		<h3>
 			<xsl:text disable-output-escaping="yes">&#60;a name="bioghist</xsl:text>
-			<xsl:value-of select="ancestor-or-self::bioghist/@id"/>
+			<xsl:value-of select="ancestor-or-self::ead:bioghist/@id"/>
 			<xsl:text disable-output-escaping="yes">"&#62;</xsl:text>
 			<xsl:apply-templates/>
 			<xsl:text disable-output-escaping="yes">&#60;/a&#62;</xsl:text>
