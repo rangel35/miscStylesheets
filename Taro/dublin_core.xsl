@@ -18,7 +18,8 @@
                 or contains($repo, 'tyrrell') or contains($repo, 'uttyler') or contains($repo, 'tamucc') or contains($repo, 'concordia') 
                 or contains($repo, 'tsu') or contains($repo, 'hrdi') or contains($repo, 'haines') or contains($repo, 'trinity')
                 or contains($repo, 'untmlsc') or contains($repo, 'etrc') or contains($repo, 'lamar') or contains($repo, 'shsu')
-                or contains($repo, 'dalhs') or contains($repo, 'chhsm') or contains($repo, 'swestern') or contains($repo, 'tamuk')">
+                or contains($repo, 'dalhs') or contains($repo, 'baytc') or contains($repo, 'bayabl') or contains($repo, 'baykc')
+                or contains($repo, 'baypll') or contains($repo, 'chhsm') or contains($repo, 'swestern') or contains($repo, 'tamuk')">
                 <xsl:value-of select="substring-after(ead/eadheader/eadid, '.')"/>
             </xsl:if>
             <xsl:if
@@ -31,7 +32,8 @@
                 or contains($repo, 'apts') or contains($repo, 'uthscsa') or contains($repo, 'tyrrell') or contains($repo, 'uttyler') 
                 or contains($repo, 'tamucc') or contains($repo, 'concordia')or contains($repo, 'tsu') or contains($repo, 'hrdi') 
                 or contains($repo, 'haines') or contains($repo, 'trinity') or contains($repo, 'untmlsc') or contains($repo, 'etrc') 
-                or contains($repo, 'lamar') or contains($repo, 'shsu') or contains($repo, 'dalhs') or contains($repo, 'chhsm') 
+                or contains($repo, 'lamar') or contains($repo, 'shsu') or contains($repo, 'dalhs') or contains($repo, 'baytc') 
+                or contains($repo, 'bayabl') or contains($repo, 'baykc') or contains($repo, 'baypll') or contains($repo, 'chhsm') 
                 or contains($repo, 'swestern') or contains($repo, 'tamuk'))">
                 <xsl:value-of select="substring-after(substring-after(ead/eadheader/eadid, '.'), '.')"/>
             </xsl:if>
