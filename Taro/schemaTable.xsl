@@ -203,7 +203,7 @@
 							<xsl:attribute name="content">Texas/Dallas History and Archives
 								Division, Dallas Public Library</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="contains($repo, 'unt')">
+						<xsl:when test="contains($repo, 'unt.')">
 							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
 							<xsl:attribute name="content">University of North Texas
 								Archives</xsl:attribute>
