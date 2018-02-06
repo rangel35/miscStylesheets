@@ -284,6 +284,38 @@
             </field>
         </xsl:for-each>
 
+        <!-- note with type -->
+        <xsl:for-each select="mods:note[@type][normalize-space(text())]">
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_type_', translate(@type, ' ', '_'), '_mt')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_type_', translate(@type, ' ', '_'), '_ms')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+        </xsl:for-each>
+
+        <!-- note with type -->
+        <xsl:for-each select="mods:language/mods:languageTerm[@type][normalize-space(text())]">
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_type_', translate(@type, ' ', '_'), '_mt')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_type_', translate(@type, ' ', '_'), '_ms')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+        </xsl:for-each>
+        
         <!-- generic nesting to capture all fields -->
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
@@ -352,7 +384,7 @@
                 <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
-
+       
     </xsl:template>
 
 <!--    
