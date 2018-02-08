@@ -38,6 +38,27 @@
         </xsl:for-each>
 
         <!-- Title -->
+        <xsl:if test="not(//mods:titleInfo[@usage = 'primary'])">
+                <field>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="concat($prefix, 'title_primary_t')"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+                </field>
+                <field>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="concat($prefix, 'title_primary_ss')"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+                </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, 'title_primary_s')"/>
+                </xsl:attribute>
+                <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+            </field>
+        </xsl:if>
+
         <xsl:for-each select="(mods:titleInfo[@usage = 'primary'][1]/mods:title[normalize-space(text())])">
             <field>
                 <xsl:attribute name="name">
@@ -48,6 +69,12 @@
             <field>
                 <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, local-name(), '_primary_ss')"/>
+                </xsl:attribute>
+                <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_primary_s')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
             </field>
@@ -82,7 +109,7 @@
                 <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
-        
+
         <!-- Date Created -->
         <xsl:for-each select="mods:originInfo/mods:dateCreated[normalize-space(text())]">
             <xsl:choose>
@@ -103,8 +130,8 @@
                 <xsl:otherwise>
                     <field>
                         <xsl:attribute name="name">
-                            <xsl:value-of
-                                select="concat($prefix, local-name(), '_', translate(@point, ' ', '_'), '_t')"/>
+                            <xsl:value-of select="concat($prefix, local-name(), '_', translate(@point, ' ', '_'), '_t')"
+                            />
                         </xsl:attribute>
                         <xsl:value-of select="text()"/>
                     </field>
@@ -315,7 +342,7 @@
                 <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
-        
+
         <!-- generic nesting to capture all fields -->
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
@@ -384,10 +411,10 @@
                 <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
-       
+
     </xsl:template>
 
-<!--    
+    <!--    
     <xsl:template match="foxml:datastream[@ID = 'FULL_TEXT']/foxml:datastreamVersion[last()]"
         name="index_text_nodes_as_a_text_field">
         <xsl:param name="content"/>
