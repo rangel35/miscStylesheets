@@ -356,6 +356,10 @@
 							<xsl:attribute name="content">Chappell Hill Historical Society
 								Museum</xsl:attribute>
 						</xsl:when>
+						<xsl:when test="contains($repo, 'epbhc')">
+							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
+							<xsl:attribute name="content">El Paso Public Library's Border Heritage Center</xsl:attribute>
+						</xsl:when>
 						<xsl:otherwise>
 							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
 							<xsl:attribute name="content">Error</xsl:attribute>
@@ -822,6 +826,13 @@
 							<a href="/taro/index.html">TARO</a> &gt; Finding Aid</div>
 						<div class="breadcrumb_aid-full">
 							<a href="/taro/browse/browse_ts1.html"> Repository Browse List</a>
+						</div>
+					</xsl:when>
+					<xsl:when test="contains($reps, 'epbhc')">
+						<div class="breadcrumb_aid-full">
+							<a href="/taro/index.html">TARO</a> &gt; Finding Aid</div>
+						<div class="breadcrumb_aid-full">
+							<a href="/taro/browse/browse_bhc1.html"> Repository Browse List</a>
 						</div>
 					</xsl:when>
 				</xsl:choose>
