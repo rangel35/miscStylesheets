@@ -11,6 +11,14 @@
         <xsl:param name="prefix">mods_</xsl:param>
         <xsl:param name="suffix">_mt</xsl:param>
 
+        <xsl:variable name="A" select="'mods_fullmetadata_t'"/>
+        <field>
+            <xsl:attribute name="name">
+                <xsl:value-of select="$A"/>
+            </xsl:attribute>
+            <xsl:value-of select="$content"/>
+        </field>
+        
         <xsl:apply-templates select="$content//mods:mods">
             <xsl:with-param name="prefix" select="$prefix"/>
             <xsl:with-param name="suffix" select="$suffix"/>
@@ -43,19 +51,19 @@
                     <xsl:attribute name="name">
                         <xsl:value-of select="concat($prefix, 'title_primary_t')"/>
                     </xsl:attribute>
-                    <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+                    <xsl:value-of select="/mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
                 </field>
                 <field>
                     <xsl:attribute name="name">
                         <xsl:value-of select="concat($prefix, 'title_primary_ss')"/>
                     </xsl:attribute>
-                    <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+                    <xsl:value-of select="/mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
                 </field>
             <field>
                 <xsl:attribute name="name">
                     <xsl:value-of select="concat($prefix, 'title_primary_s')"/>
                 </xsl:attribute>
-                <xsl:value-of select="//mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
+                <xsl:value-of select="/mods:titleInfo[1]/mods:title[normalize-space(text())]"/>
             </field>
         </xsl:if>
 
@@ -327,7 +335,7 @@
             </field>
         </xsl:for-each>
 
-        <!-- note with type -->
+        <!-- mods:languageTerm with type -->
         <xsl:for-each select="mods:language/mods:languageTerm[@type][normalize-space(text())]">
             <field>
                 <xsl:attribute name="name">
@@ -342,7 +350,7 @@
                 <xsl:value-of select="text()"/>
             </field>
         </xsl:for-each>
-
+                
         <!-- generic nesting to capture all fields -->
         <xsl:for-each select="mods:*[normalize-space(text())]">
             <field>
