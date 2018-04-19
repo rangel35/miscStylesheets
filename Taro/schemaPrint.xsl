@@ -5107,15 +5107,32 @@
 				</a>
 			</xsl:if>
 		</xsl:if>
+<!--
 		<xsl:for-each select="ead:unitid/@audience[not(self::internal)]">
-				<xsl:if test="@label">
-					<strong>
-						<xsl:value-of select="@label"/>
-					</strong>
-					<xsl:text>  </xsl:text>
-				</xsl:if>
-				<xsl:apply-templates/>
-			</xsl:for-each>
+			<xsl:if test="@label">
+				<strong>
+					<xsl:value-of select="@label"/>
+				</strong>
+				<xsl:text>  </xsl:text>
+			</xsl:if>
+			<xsl:apply-templates/>
+		</xsl:for-each>
+-->
+		<xsl:for-each select="ead:unitid">
+			<xsl:choose>
+				<xsl:when test="@audience='external'">
+					<xsl:if test="@label">
+						<strong>
+							<xsl:value-of select="@label"/>
+						</strong>
+						<xsl:text>  </xsl:text>
+					</xsl:if>
+					<xsl:apply-templates/>
+				</xsl:when>
+				<xsl:otherwise> </xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
+		
 		<xsl:choose>
 			<xsl:when test="unittitle/unitdate">
 				<xsl:for-each select="ead:unittitle">
