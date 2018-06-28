@@ -10,15 +10,20 @@
         <xsl:param name="content"/>
         <xsl:param name="prefix">mods_</xsl:param>
         <xsl:param name="suffix">_mt</xsl:param>
-
+        
+       <!-- Only output non-empty text nodes (followed by a single space) -->
+       <xsl:variable name="Ftext" select="normalize-space($content)"/>
         <xsl:variable name="A" select="'mods_fullmetadata_t'"/>
         <field>
             <xsl:attribute name="name">
                 <xsl:value-of select="$A"/>
             </xsl:attribute>
-            <xsl:value-of select="$content"/>
+            <xsl:if test="$Ftext">
+                <xsl:value-of select="$Ftext"/>
+                <xsl:text> </xsl:text>
+            </xsl:if>
         </field>
-
+        
         <xsl:apply-templates select="$content//mods:mods">
             <xsl:with-param name="prefix" select="$prefix"/>
             <xsl:with-param name="suffix" select="$suffix"/>
@@ -557,7 +562,7 @@
         </xsl:for-each>
 
     </xsl:template>
-
+    
     <!--    
     <xsl:template match="foxml:datastream[@ID = 'FULL_TEXT']/foxml:datastreamVersion[last()]"
         name="index_text_nodes_as_a_text_field">
