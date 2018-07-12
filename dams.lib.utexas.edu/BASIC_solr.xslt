@@ -57,6 +57,8 @@
         </xsl:for-each>
 
         <!-- Title -->
+        <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz_'"/>
+        <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ '"/>
         <xsl:for-each select="(mods:titleInfo[@usage = 'primary'][1]/mods:title[normalize-space(text())])">
             <field>
                 <xsl:attribute name="name">
@@ -69,6 +71,12 @@
                     <xsl:value-of select="concat($prefix, local-name(), '_primary_ss')"/>
                 </xsl:attribute>
                 <xsl:value-of select="text()"/>
+            </field>
+            <field>
+                <xsl:attribute name="name">
+                    <xsl:value-of select="concat($prefix, local-name(), '_primary_sort_s')"/>
+                </xsl:attribute>
+                <xsl:value-of select="translate(text(), $uppercase, $lowercase)"/>
             </field>
             <field>
                 <xsl:attribute name="name">
