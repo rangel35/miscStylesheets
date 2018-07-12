@@ -23,6 +23,12 @@
                 <xsl:text> </xsl:text>
             </xsl:if>
         </field>
+
+        <field>
+            <xsl:attribute name="name">
+                <xsl:value-of select="concat($prefix, ../@ID , $suffix)"/>
+            </xsl:attribute>
+        </field>
         
         <xsl:apply-templates select="$content//mods:mods">
             <xsl:with-param name="prefix" select="$prefix"/>
