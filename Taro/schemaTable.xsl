@@ -258,6 +258,11 @@
 							<xsl:attribute name="content">Human Rights Documentation Initiative,
 								University of Texas at Austin</xsl:attribute>
 						</xsl:when>
+						<xsl:when test="contains($repo, 'untmlsc')">
+							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
+							<xsl:attribute name="content">University of North Texas Music Library
+								Special Collections</xsl:attribute>
+						</xsl:when>
 						<xsl:when test="contains($repo, 'lsc')">
 							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
 							<xsl:attribute name="content">University of Texas H.J. Lutcher Stark
@@ -336,11 +341,6 @@
 							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
 							<xsl:attribute name="content">Haines Medical Library at Scott &amp;
 								White</xsl:attribute>
-						</xsl:when>
-						<xsl:when test="contains($repo, 'untmlsc')">
-							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
-							<xsl:attribute name="content">University of North Texas Music Library
-								Special Collections</xsl:attribute>
 						</xsl:when>
 						<xsl:when test="contains($repo, 'tsu')">
 							<xsl:attribute name="name">DC.Publisher</xsl:attribute>
